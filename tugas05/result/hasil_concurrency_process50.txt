@@ -1,0 +1,13 @@
+Running 10s test @ http://127.0.0.1:44444
+  50 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   569.81ms  506.99ms   1.99s    83.53%
+    Req/Sec    10.60      9.42    60.00     86.04%
+  Latency Distribution
+     50%  402.43ms
+     75%  839.40ms
+     90%    1.23s 
+     99%    1.90s 
+  595 requests in 10.10s, 83.09KB read
+Requests/sec:     58.91
+Transfer/sec:      8.23KB
