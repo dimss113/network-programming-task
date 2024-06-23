@@ -1,0 +1,164 @@
+DEFINISI PROTOKOL
+
+Login
+* Single Realm
+** Perintah: auth <username> <password>
+** Penggunaan: Autentikasi user
+** Response: 
+    - Berhasil:
+      - status: OK
+      - tokenId: tokenId
+    - Gagal:
+      - status: ERROR
+      - message: User tidak ada | Password salah
+
+SEND MESSAGE
+* Single Realm
+** Perintah: send <username to> <message>
+** Penggunaan: Mengirim Private pesan ke user dalam realm yang sama
+** Response: 
+    - Berhasil:
+      - status: OK
+      - message: Message Sent
+    - Gagal:
+      - status: ERROR
+      - message: Session tidak ditemukan | User tidak ada
+
+GET INBOX
+* Single Realm
+** Perintah: inbox
+** Penggunaan : mendapatkan inbox dari private chat
+** Respone:
+    - Berhasil:
+      - status: OK
+      - messages: inbox data
+
+GET GROUP
+* Single Realm
+** Perintah: group get 
+** Penggunaan: mendapatkan group yang tersedia
+** Response: 
+    - Berhasil:
+      - status: OK
+      - message: data nama group
+
+ADD GROUP 
+* Single Realm
+** Perintah: group add <groupname> <password> 
+** Penggunaan: Membuat grup baru 
+** Response:
+    - Berhasil:
+      - status: OK
+      - message: Add group Berhasil
+    - Gagal:
+      - status: ERROR
+      - message: Session tidak ditemukan | Group sudah ada.
+
+JOIN GROUP
+* Single Realm 
+** Perintah: group join <groupname> <password>
+** Penggunaan: Bergabung ke group
+** Response: 
+    - Berhasil:
+      - status: OK
+      - message: Join group berhasil
+    - Gagal:
+      - status: ERROR
+      - message: Session tidak ditemukan | group belum ada | password salah | user sudah join
+
+SEND GROUP
+* single realm
+** Perintah: group send <message>
+** Penggunaan: mengirim pesan ke group
+** Response:
+    - Berhasil: 
+      - status: OK  
+      - message: Message Sent 
+    - Gagal:
+      - status: OK
+      - message: Session tidak ditemukan | group belum ada | bukan member group | User tidak ditemukan | group tidak ditemukan
+
+GET INBOX GROUP
+* single realm
+** Perintah: group inbox <groupname>
+** Pengunaan: mendapatkan pesan group
+** Response:
+    - Berhasil: 
+      - status: OK
+      - message: pesan group
+    - Gagal:
+      - status: ERROR
+      - message: Session tidak ditemukan | Group belom ada | Bukan member group
+
+ADD REALM 
+* Inter realm
+** Perintah: addrealm <realm_id> <realm_addr> <realm_port>
+** Penggunaan: menambahkan realm baru
+** Response: 
+  - Berhasil:
+    - status: OK
+    - message: Connect realm berhasil
+  - Gagal:
+    - status: ERROR
+    - message: Realm sudah ada | Realm Unreachable
+
+ACKNOWLEDGE REALM
+* Inter realm
+** perintah: ackrealm <realm_id> <realm_addr> <realm_port> <src_addr> <src_port>
+** Penggunaan: test koneksi antar realm
+** Response: 
+    - Berhasil:
+      - status: OK
+      - message: Connect realm berhasil
+    - Gagal:
+      - status: ERROR
+      - message: Realm Unreachable
+
+SEND REALM
+* Inter realm
+** Perintah: sendrealm <realm_id> <username_to> <message>
+** Penggunaan: mengirim pesan private antar realm
+** Response:
+    - Berhasil:
+      - status: OK
+      - message: Pesan realm dikirim
+    - Gagal:
+      - status: ERROR
+      - message: Session tidak ditemukan | realm belum ada
+
+INBOX REALM
+* Inter Realm
+** Perintah: inboxrealm <realm_id>
+** Penggunaan: mendapatkan private pesan antar realm
+** Response:
+    - Berhasil: 
+      - status: OK
+      - messages: chat messages
+    - Gagal:
+      - status: ERROR
+      - message: Session tidak ditemukan | realm belum ada
+
+
+SEND GROUP REALM
+* Inter realm
+** Perintah: sendgrouprealm <realm_id> <message>
+** Penggunaan: mengirimkan pesan group
+** Response: 
+    - Berhasil: 
+      - status: OK
+      - message: Pesan realm dikirim
+    - Gagal:
+      - status: OK
+      - message: Session tidak ditemukan | realm belum ada | bukan member group | group tidak ditemukan
+
+INBOX GROUP REALM
+* Inter realm
+** Perintah: inboxgrouprealm <realm_id> <groupname>
+** Penggunaan: mendapatkan pesan group antar realm
+** Response: 
+    - Berhasil: 
+      - status: OK
+      - messages: chat messages
+    - Gagal:
+      - status: ERROR 
+      - message: Session tidak ditemukan | realm belum ada
